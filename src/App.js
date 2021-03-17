@@ -1,9 +1,16 @@
+import Body from "./components/Body";
+import Footer from "./components/Footer";
+import Header from "./components/header";
+import AppWrapper from "./components/layout/AppWrapper";
 
 
 const App = () => {
   return (
-    <div className="">
-    </div>
+    <AppWrapper>
+      <Header />
+      <Body />
+      <Footer />
+    </AppWrapper>
   );
 }
 

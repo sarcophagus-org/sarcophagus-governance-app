@@ -13,7 +13,7 @@ const createWeb3Root = () => {
 
   return ({ children }) => {
     const { userSupplied }= useUserSuppliedConnect()
-    const fallback = useFallbackConnect(!!local)
+    const fallback = useFallbackConnect(!!userSupplied)
 
     const defaultName = 'Not connected'
 
@@ -24,7 +24,6 @@ const createWeb3Root = () => {
       provider: null,
       signerOrProvider: null,
     })
-
     useEffect(() => {
       if (userSupplied?.provider && supportedChains().includes(parseInt(userSupplied?.provider.chainId))) {
         setWeb3({
@@ -51,10 +50,11 @@ const createWeb3Root = () => {
           signerOrProvider: null,
         })
       }
-    }, [userSupplied, local, fallback])
+    }, [userSupplied, fallback])
     return <Provider value={web3}>{children}</Provider>
   }
 }
+
 
 const Web3Provider = createWeb3Root()
 
