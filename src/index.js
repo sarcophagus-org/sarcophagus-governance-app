@@ -3,12 +3,15 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import { Web3Provider } from './web3/index';
+import { DataProvider } from './context/blockchain'
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
     <Web3Provider>
-      <App />
+      <DataProvider>
+        <App />
+      </DataProvider>
     </Web3Provider>
   </React.StrictMode>,
   document.getElementById('root')
