@@ -5,23 +5,23 @@ const BASE_DEFAULT = "font-normal text-base text-white"
 const BASE_HEADING_ONE = "text-xl text-white font-bold"
 const BASE_HEADING_TWO = "text-gray-400 font-normal text-base"
 
-const Heading = ({varient, addClassnames, children}) => {
+const Heading = ({varient, addClassnames, label}) => {
   if(varient === "heading-one") {
     return (
       <div className={classnames(BASE_HEADING_ONE, addClassnames)}>
-        { children }
+        { label }
       </div>
     )
   }
   if(varient === "heading-two") {
     return (
       <div className={classnames(BASE_HEADING_TWO, addClassnames)}>
-        { children }
+        { label }
       </div>
     )
   } else return (
     <div className={classnames(BASE_DEFAULT, addClassnames)}>
-        { children }
+        { label }
     </div>
   )
 }

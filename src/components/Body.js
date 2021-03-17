@@ -1,9 +1,24 @@
 import React from 'react'
+import { useWeb3 } from '../web3'
+import { useAddresses } from '../web3/chains'
+// import BlockchainContainer from './BlockchainContainer'
+import Heading from './layout/Heading'
+
+const Link = () => {
+  const { chainId } = useWeb3()
+  const addresses = useAddresses(chainId)
+  const network = parseInt(chainId, 10) === 4 ? "rinkeby." : ""
+  const etherscanURL = `https://${network}etherscan.io/address/${addresses?.SarcoStakingProxy}`
+  return <a href={etherscanURL} target="_blank" className="underline text-gray-400">View on etherscan</a>
+}
 
 const Body = () => {
   return (
-    <div>
-
+    <div className="flex flex-col items-center">
+      <Heading varient="heading-one" label="SARCO Token Governence" />
+      <Link />
+      {/* <BlockchainContainer /> */}
+      {/* <StakingContainer /> */}
     </div>
   )
 }
