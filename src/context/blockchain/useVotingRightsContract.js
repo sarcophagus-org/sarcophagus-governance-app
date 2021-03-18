@@ -5,8 +5,8 @@ import { useWeb3 } from "../../web3"
 
 const useVotingRightsContract = (sarcophagusVotingRightsContract, blockNumber) => {
   const { account, provider } = useWeb3()
-  const [ totalSupplyBN, setTotalSupply ] = useState(BigNumber.from(0))
-  const [ vrBalanceBN, setBalance ] = useState(BigNumber.from(0))
+  const [ totalSupply, setTotalSupply ] = useState(BigNumber.from(0))
+  const [ vrBalance, setBalance ] = useState(BigNumber.from(0))
 
   useEffect(() => {
     if(provider && blockNumber) {
@@ -28,7 +28,7 @@ const useVotingRightsContract = (sarcophagusVotingRightsContract, blockNumber) =
   
 
 
-  return { totalSupplyBN, vrBalanceBN }
+  return { totalSupply, vrBalance }
 }
 
 export default useVotingRightsContract

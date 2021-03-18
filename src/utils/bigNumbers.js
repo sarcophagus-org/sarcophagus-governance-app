@@ -16,8 +16,8 @@ export const getNumberalString = (bigNumber, decimals, isFixed) => {
 
 export const getVotingRightPercentage = (vrBalanceBN, totalSupplyBN) => {
   if(vrBalanceBN?.isZero()) return '0 %'
-  const vr = getDecimalNumber(vrBalanceBN, 18)
-  const ts = getDecimalNumber(totalSupplyBN, 18)
-  const percentage = (ts / vr) * 100
+  const vr = parseFloat(utils.formatEther((vrBalanceBN)))
+  const ts = parseFloat(utils.formatEther((totalSupplyBN)))
+  const percentage = (vr / ts) * 100
   return `${percentage.toFixed(9)} %`
 }

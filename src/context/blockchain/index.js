@@ -3,7 +3,7 @@ import { useSarcophagusStakingContract, useSarcophagusTokenContract, useSarcopha
 import { useSarcoBalance } from './useBalance'
 import { useCurrentBlock } from './useBlocks'
 import useVotingRightsContract from './useVotingRightsContract'
-import { getDecimalNumber, getVotingRightPercentage } from '../../utils/bigNumbers'
+import { getVotingRightPercentage } from '../../utils/bigNumbers'
 import useAllowance from './useAllowance'
 
 let context
@@ -21,15 +21,11 @@ const createDataRoot = () => {
     
     const currentBlock = useCurrentBlock()
 
-    const balanceBN = useSarcoBalance(sarcophagusTokenContract, currentBlock)
+    const balance = useSarcoBalance(sarcophagusTokenContract, currentBlock)
     const allowance = useAllowance(sarcophagusStakingContract, sarcophagusTokenContract)
 
-    const { totalSupplyBN, vrBalanceBN } = useVotingRightsContract( sarcophagusVotingRightsContract, currentBlock )
-    
-    const totalSupply = getDecimalNumber(totalSupplyBN, 18)
-    const balance = getDecimalNumber(balanceBN, 18)
-    const vrBalance = getDecimalNumber(vrBalanceBN, 18)
-    const votingRights = getVotingRightPercentage(vrBalanceBN, totalSupplyBN)
+    const { totalSupply, vrBalance } = useVotingRightsContract( sarcophagusVotingRightsContract, currentBlock )
+    const votingRights = getVotingRightPercentage(vrBalance, totalSupply)
 
     const dataContext = {
       sarcophagusTokenContract,

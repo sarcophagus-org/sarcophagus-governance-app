@@ -62,7 +62,7 @@ const useStaking = (varient) => {
           }
         }
       }
-    }, [allowance, sarcoBN, sarcophagusStakingContract, sarcophagusTokenContract, varient])
+    }, [allowance, sarcoBN, sarcophagusStakingContract, sarcophagusTokenContract, varient, account])
 
   const calls = e => {
     e.preventDefault()
