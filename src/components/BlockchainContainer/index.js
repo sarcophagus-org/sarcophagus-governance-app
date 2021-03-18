@@ -19,11 +19,11 @@ const BlockchainContainer = () => {
         <Value>{ totalSupply } </Value>
       </ColumnContainer>
       <ColumnContainer>
-        <Heading varient="heading-two" label="Your Voting Rights balance" />
+        <Heading varient="heading-two" label="Your staked SARCO" />
         <Value>{ vrBalance } </Value>
       </ColumnContainer>
       <ColumnContainer>
-        <Heading varient="heading-two" label="Your Voting Rights" />
+        <Heading varient="heading-two" label="Your voting rights" />
         <Value>{ votingRights } </Value>
       </ColumnContainer>
     </Section>
