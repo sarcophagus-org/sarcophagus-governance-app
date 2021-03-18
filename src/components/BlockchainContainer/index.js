@@ -8,13 +8,9 @@ const ColumnContainer = ({ children }) => <div className="flex flex-col items-ce
 const Value = ({children}) => <div className="">{ children }</div>
 
 const BlockchainContainer = () => {
-  const { balance, vrBalance, totalSupply, votingRights} = useData()
+  const { vrBalance, totalSupply, votingRights} = useData()
   return (
     <Section addClassnames="mt-8 py-8 flex">
-      <ColumnContainer>
-        <Heading varient="heading-two" label="Mys SARCO balance" />
-        <Value>{ utils.formatEther(balance) } </Value>
-      </ColumnContainer>
       <ColumnContainer>
         <Heading varient="heading-two" label="Total Voting Rights" />
         <Value>{ utils.formatEther(totalSupply) } </Value>
