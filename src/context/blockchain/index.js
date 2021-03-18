@@ -19,7 +19,7 @@ const createDataRoot = () => {
     const sarcophagusStakingContract = useSarcophagusStakingContract()
     const sarcophagusVotingRightsContract = useSarcophagusVotingRightsContract()
     
-    const { currentBlock } = useCurrentBlock()
+    const currentBlock = useCurrentBlock()
 
     const balanceBN = useSarcoBalance(sarcophagusTokenContract, currentBlock)
     const allowance = useAllowance(sarcophagusStakingContract, sarcophagusTokenContract)

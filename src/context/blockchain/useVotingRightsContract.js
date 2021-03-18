@@ -9,13 +9,13 @@ const useVotingRightsContract = (sarcophagusVotingRightsContract, blockNumber) =
   const [ vrBalanceBN, setBalance ] = useState(BigNumber.from(0))
 
   useEffect(() => {
-    if(provider) {
+    if(provider && blockNumber) {
       // @param uint256 _blockNumber
       sarcophagusVotingRightsContract?.totalSupply().then( totalSupply => {
         setTotalSupply(totalSupply)
       }).catch(e => console.error('Error total supply', e))
     }
-  }, [ provider, sarcophagusVotingRightsContract ])
+  }, [ provider, sarcophagusVotingRightsContract, blockNumber ])
 
   useEffect(() => {
     if(provider && blockNumber) {
