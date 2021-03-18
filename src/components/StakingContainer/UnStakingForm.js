@@ -10,7 +10,7 @@ const UnStakingForm = () => {
   const { buttonText, buttonEnabled, calls, sarco, setSarco } = useStaking("Unstake")
   const { vrBalance } = useData()
   return (
-    <form onSubmit={calls}>
+    <form onSubmit={calls} style={{width: '18.5rem'}}>
         <div className="mt-2 flex flex-col">
           <Input currency="sarco" value={sarco} setValue={setSarco} balance={vrBalance} decimals={18} icon={logo} />
         </div>

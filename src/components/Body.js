@@ -15,7 +15,7 @@ const Link = () => {
 
 const Body = () => {
   return (
-    <div className="flex flex-col items-center" style={{height: 'calc(100vh - 16rem'}}>
+    <div className="mx-auto text-center" style={{minHeight: 'calc(100vh - 16rem'}}>
       <Heading varient="heading-one" label="SARCO Token Governence" />
       <Link />
       <BlockchainContainer />

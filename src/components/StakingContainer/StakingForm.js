@@ -8,7 +8,7 @@ import useStaking from '../hooks/useStaking'
 const StakingForm = () => {
   const { balance, buttonText, buttonEnabled, calls, sarco, setSarco } = useStaking("Stake")
   return (
-    <form onSubmit={calls}>
+    <form onSubmit={calls} style={{width: '18.5rem'}}>
       <div className="mt-2 flex flex-col">
         <Input currency="sarco" value={sarco} setValue={setSarco} balance={balance} decimals={18} icon={logo} />
       </div>
