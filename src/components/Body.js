@@ -3,6 +3,7 @@ import { useWeb3 } from '../web3'
 import { useAddresses } from '../web3/chains'
 import BlockchainContainer from './BlockchainContainer'
 import Heading from './layout/Heading'
+import StakingContainer from './StakingContainer'
 
 const Link = () => {
   const { chainId } = useWeb3()
@@ -18,7 +19,7 @@ const Body = () => {
       <Heading varient="heading-one" label="SARCO Token Governence" />
       <Link />
       <BlockchainContainer />
-      {/* <StakingContainer /> */}
+      <StakingContainer />
     </div>
   )
 }

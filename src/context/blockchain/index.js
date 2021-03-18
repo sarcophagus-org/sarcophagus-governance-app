@@ -2,9 +2,9 @@ import { createContext, useContext } from 'react'
 import { useSarcophagusStakingContract, useSarcophagusTokenContract, useSarcophagusVotingRightsContract } from './useContracts'
 import { useSarcoBalance } from './useBalance'
 import { useCurrentBlock } from './useBlocks'
-import useStakingContract from './useStakingContract'
 import useVotingRightsContract from './useVotingRightsContract'
 import { getDecimalNumber, getVotingRightPercentage } from '../../utils/bigNumbers'
+import useAllowance from './useAllowance'
 
 let context
 
@@ -20,9 +20,10 @@ const createDataRoot = () => {
     const sarcophagusVotingRightsContract = useSarcophagusVotingRightsContract()
     
     const { currentBlock } = useCurrentBlock()
-    const balanceBN = useSarcoBalance(sarcophagusTokenContract, currentBlock)
 
-    const { stake, unStake } = useStakingContract(sarcophagusStakingContract)
+    const balanceBN = useSarcoBalance(sarcophagusTokenContract, currentBlock)
+    const allowance = useAllowance(sarcophagusStakingContract, sarcophagusTokenContract)
+
     const { totalSupplyBN, vrBalanceBN } = useVotingRightsContract( sarcophagusVotingRightsContract, currentBlock )
     
     const totalSupply = getDecimalNumber(totalSupplyBN, 18)
@@ -35,11 +36,10 @@ const createDataRoot = () => {
       sarcophagusStakingContract,
       sarcophagusVotingRightsContract,
       balance,
+      allowance,
       vrBalance,
       totalSupply,
       votingRights,
-      stake, 
-      unStake
     }
     return <Provider value={dataContext}>{children}</Provider>
   }

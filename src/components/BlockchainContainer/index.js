@@ -3,7 +3,7 @@ import { useData } from '../../context/blockchain'
 import Heading from '../layout/Heading'
 import Section from '../layout/Section'
 
-const ColumnContainer = ({ children }) => <div className="flex flex-col mx-8">{ children }</div>
+const ColumnContainer = ({ children }) => <div className="flex flex-col items-center whitespace-no-wrap w-48">{ children }</div>
 const Value = ({children}) => <div className="">{ children }</div>
 
 const BlockchainContainer = () => {
