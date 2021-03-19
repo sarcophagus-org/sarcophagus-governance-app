@@ -10,7 +10,7 @@ const Value = ({children}) => <div className="">{ children }</div>
 const BlockchainContainer = () => {
   const { vrBalance, totalSupply, votingRights} = useData()
   return (
-    <Section addClassnames="mt-8 py-8 flex">
+    <Section addClassnames="mt-6 py-8 flex">
       <ColumnContainer>
         <Heading varient="heading-two" label="Total Voting Rights" />
         <Value>{ utils.formatEther(totalSupply) } </Value>

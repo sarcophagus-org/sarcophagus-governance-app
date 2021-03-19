@@ -1,13 +1,10 @@
 import React from 'react'
-import { BrowserRouter as Router } from 'react-router-dom'
 
 const AppWrapper = ({ children }) => {
   return (
-    <Router>
-      <div className="container relative">
-        { children }
-      </div>
-    </Router>
+    <div className="container min-h-screen flex flex-col justify-between">
+      {children}
+    </div>
   )
 }
 
