@@ -5,7 +5,6 @@ on:
       - develop
 jobs:
   build-and-deploy:
-    environment: dev
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
