@@ -14,11 +14,10 @@ const useVotingRightsContract = (sarcophagusVotingRightsContract, blockNumber) =
         setTotalSupply(totalSupply)
       }).catch(e => console.error('Error total supply', e))
     }
-  }, [ provider, sarcophagusVotingRightsContract ])
+  }, [ provider, sarcophagusVotingRightsContract, blockNumber ])
 
   useEffect(() => {
     if(provider && blockNumber && account) {
-       // @param address _owner
        sarcophagusVotingRightsContract?.balanceOf(account).then( balance => {
         setBalance(balance)
       }).catch(e => console.error('Error balance', e))

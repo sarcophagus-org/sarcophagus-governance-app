@@ -2,7 +2,7 @@ import { utils } from "ethers"
 import numeral from "numeral"
 import React  from "react"
 
-const Input = ({ currency, value, setValue, balance, decimals, icon }) => {
+const Input = ({ currency, value, setValue, balance, decimals, icon, balanceName }) => {
   const calculateValue = setValue => {
     return e => {
       let normalizedValue = ""
@@ -28,10 +28,12 @@ const Input = ({ currency, value, setValue, balance, decimals, icon }) => {
       </div>
       <div className="w-full">
         <div className="flex justify-between mb-2 text-gray-400">
-          <div className="mr-2">Amount*</div>
-          <div>Balance: {utils.formatEther(balance)}</div>
+          <div className="flex flex-wrap justify-end w-full">
+            <div>{balanceName} Balance:</div>
+            <div className="ml-1">{utils.formatEther(balance)}</div>
+          </div>
         </div>
-        <input type="number" step={makeStep(decimals)} disabled={inputDisable} required name={currency} id={currency} value={value} onChange={calculateValue(setValue)} min="0" max={utils.formatEther(balance)} className={`w-full border-2 border-gray-500 ${inputDisable ? 'text-gray-400' : 'text-white'} bg-gray-900`} placeholder={utils.formatEther(balance)} />
+        <input type="number" step={makeStep(decimals)} disabled={inputDisable} required name={currency} id={currency} value={value} onChange={calculateValue(setValue)} min="1" max={utils.formatEther(balance)} className={`w-full border-2 border-gray-500 ${inputDisable ? 'text-gray-400' : 'text-white'} bg-gray-900`} placeholder={utils.formatEther(balance)} />
       </div>
     </div>
   )

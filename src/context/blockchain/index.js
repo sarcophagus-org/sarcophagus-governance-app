@@ -22,7 +22,7 @@ const createDataRoot = () => {
     const currentBlock = useCurrentBlock()
 
     const balance = useSarcoBalance(sarcophagusTokenContract, currentBlock)
-    const allowance = useAllowance(sarcophagusStakingContract, sarcophagusTokenContract)
+    const allowance = useAllowance(sarcophagusStakingContract, sarcophagusTokenContract, currentBlock)
 
     const { totalSupply, vrBalance } = useVotingRightsContract( sarcophagusVotingRightsContract, currentBlock )
     const votingRights = getVotingRightPercentage(vrBalance, totalSupply)

@@ -37,13 +37,13 @@ const useStaking = (varient) => {
           "Approving SARCO...", "SARCO approval failed!", "SARCO approval made!"
         ])}
       } else {
-        setButtonText(varient === "Stake" ? "Stake my SARCO" : "Unstake my SARCO")
+        setButtonText(varient === "Stake" ? "Increase Voting Rights" : "Decrease Voting Rights")
         if ( sarcophagusStakingContract ) {
           if(varient === 'Stake'){
             setCallData([
               sarcophagusStakingContract.stake,
               [sarcoBN, { }],
-              "staking coins...", "staking failed!", "staking made!",
+              "Staking SARCO...", "Staking failed!", "Staking made!",
               () => {
                 setSarco(0)
                 setCallData([])
@@ -53,7 +53,7 @@ const useStaking = (varient) => {
             setCallData([
               sarcophagusStakingContract.unstake,
               [sarcoBN, { }],
-              "unstaking coins...", "unstaking failed!", "unstaking made!",
+              "Unstaking SARCO...", "Unstaking failed!", "Unstaking made!",
               () => {
                 setSarco(0)
                 setCallData([])
