@@ -1,0 +1,49 @@
+name: Build and Deploy
+on:
+  push:
+    branches:
+      - develop
+jobs:
+  build-and-deploy:
+    environment: dev
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2.3.1
+        with:
+          persist-credentials: false
+
+      - name: Setup Node 🤘
+        uses: actions/setup-node@v2
+        with:
+          node-version: '15.11'
+
+      - name: Edit package.json 📄
+        run: npx json -I -f package.json -e 'this.homepage="${{ secrets.DEV_HOMEPAGE_URL }}"'
+
+      - name: Install and Build 🔧
+        run: |
+          npm install
+          npm run build
+        env:
+          REACT_APP_CHAIN_ID: ${{ secrets.DEV_REACT_APP_CHAIN_ID }}
+          REACT_APP_SARCO_TOKEN_ADDRESS: ${{ secrets.DEV_REACT_APP_SARCO_TOKEN_ADDRESS }}
+          REACT_APP_SARCO_STAKING_PROXY_ADDRESS: ${{ secrets.DEV_REACT_APP_SARCO_STAKING_PROXY_ADDRESS }}
+          REACT_APP_SARCO_VOTING_RIGHTS_PROXY_ADDRESS: ${{ secrets.DEV_REACT_APP_SARCO_VOTING_RIGHTS_PROXY_ADDRESS }}
+          REACT_APP_ALCHEMY_KEY: ${{ secrets.DEV_REACT_APP_ALCHEMY_KEY }}
+          REACT_APP_ETHERSCAN_KEY: ${{ secrets.DEV_REACT_APP_ETHERSCAN_KEY }}
+          REACT_APP_INFURA_KEY: ${{ secrets.DEV_REACT_APP_INFURA_KEY }}
+      
+      - name: Install SSH Client 🔑
+        uses: webfactory/ssh-agent@v0.4.1
+        with:
+          ssh-private-key: ${{ secrets.DEV_DEPLOY_KEY }}
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          SSH: true
+          REPOSITORY_NAME: ${{ secrets.DEV_DEPLOY_REPO_NAME }}
+          BRANCH: gh-pages
+          FOLDER: build
+          CLEAN: true
