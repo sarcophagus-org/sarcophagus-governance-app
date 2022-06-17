@@ -8,9 +8,7 @@ import { useAddresses } from './useAddresses'
 
 const useSarcophagusTokenContract = () => {
   const { state: { chainId, signerOrProvider } } = useWeb3Provider()
-  console.log("🚀 ~ file: useContracts.js ~ line 11 ~ chainId", chainId)
   const addresses = useAddresses(chainId)
-  console.log("🚀 ~ file: useContracts.js ~ line 12 ~ addresses", addresses)
   const [sarcophagusTokenContract, setSarcophagusTokenContract] = useState()
 
   useEffect(() => {
