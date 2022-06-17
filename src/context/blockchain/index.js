@@ -16,12 +16,16 @@ const createDataRoot = () => {
   
   return ({ children }) => {
     const sarcophagusTokenContract = useSarcophagusTokenContract()
+    console.log("🚀 ~ file: index.js ~ line 19 ~ sarcophagusTokenContract", sarcophagusTokenContract)
     const sarcophagusStakingContract = useSarcophagusStakingContract()
+    console.log("🚀 ~ file: index.js ~ line 21 ~ sarcophagusStakingContract", sarcophagusStakingContract)
     const sarcophagusVotingRightsContract = useSarcophagusVotingRightsContract()
     
     const currentBlock = useCurrentBlock()
+    console.log("🚀 ~ file: index.js ~ line 23 ~ currentBlock", currentBlock)
 
     const balance = useSarcoBalance(sarcophagusTokenContract, currentBlock)
+    console.log("🚀 ~ file: index.js ~ line 26 ~ balance", balance)
     const allowance = useAllowance(sarcophagusStakingContract, sarcophagusTokenContract, currentBlock)
 
     const { totalSupply, vrBalance } = useVotingRightsContract( sarcophagusVotingRightsContract, currentBlock )

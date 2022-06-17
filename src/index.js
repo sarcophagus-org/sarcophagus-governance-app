@@ -2,10 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import { Web3Provider } from './web3/index';
 import { DataProvider } from './context/blockchain'
 import reportWebVitals from './reportWebVitals';
 import { ToastContainer } from 'react-toastify';
+import { Web3Provider } from './context/web3Data/Web3Provider';
 
 ReactDOM.render(
   <React.StrictMode>
