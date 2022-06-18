@@ -11,8 +11,18 @@ ReactDOM.render(
   <React.StrictMode>
     <Web3Provider>
       <DataProvider>
+        <ToastContainer
+          closeButton={true}
+          position="bottom-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          rtl={false}
+          closeOnClick 
+          pauseOnFocusLoss
+          draggable
+          />
         <App />
-        <ToastContainer closeButton={false} />
       </DataProvider>
     </Web3Provider>
   </React.StrictMode>,

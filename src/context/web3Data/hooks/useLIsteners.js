@@ -1,4 +1,3 @@
-import WalletConnectProvider from '@walletconnect/ethereum-provider';
 import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 
@@ -23,7 +22,7 @@ const useListeners = (
         connectDefaultProvider();
       } else {
         setModalProvider(_modalProvider);
-        toast('Connected', { toastId: 'connected' });
+        toast.dark('Connected', { toastId: 'connected' });
       }
     });
   }, [web3Modal, connectDefaultProvider]);
@@ -35,13 +34,13 @@ const useListeners = (
     modalProvider.on('chainChanged', (chainId) => {
       if (!supportedChains().includes(parseInt(chainId))) {
         // check that connected chain is supported
-        toast(`Chain changed: Switch to a supported chain: ${supportedChains().join(', ')}`, {
+        toast.dark(`Chain changed: Switch to a supported chain: ${supportedChains().join(', ')}`, {
           toastId: 'switchChain',
         });
         // switch to a default provider
         connectDefaultProvider();
       } else {
-        toast(`Chain changed: ${chainId}`, {
+        toast.dark(`Chain changed: ${chainId}`, {
           toastId: 'connected',
         });
         connect();
@@ -51,20 +50,20 @@ const useListeners = (
     // subscribe to account change events
     modalProvider.on('accountsChanged', (accounts) => {
       if (!accounts.length) {
-        toast('Account access revoked', { toastId: 'accessChanged' });
+        toast.dark('Account access revoked', { toastId: 'accessChanged' });
         // switch to a default provider
         connectDefaultProvider();
         // remove listeners
         setModalProvider(null);
       } else {
-        toast('Account changed', { toastId: 'connected' });
+        toast.dark('Account changed', { toastId: 'connected' });
         connect();
       }
     });
 
     // subscribe to provider disconnection
     modalProvider.on('disconnect', () => {
-      toast('Account disconnected', { toastId: 'disconnected' });
+      toast.dark('Account disconnected', { toastId: 'disconnected' });
       // switch to a default provider
       connectDefaultProvider();
       // remove listeners
