@@ -1,3 +1,4 @@
+import WalletConnectProvider from '@walletconnect/ethereum-provider';
 import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 
@@ -72,7 +73,13 @@ const useListeners = (
 
     // unsubscribe
     return () => {
-      modalProvider.removeAllListeners();
+      if(modalProvider.isWalletConnect) {
+        modalProvider.off("accountsChanged");
+        modalProvider.off("chainChanged");
+        modalProvider.off("disconnect");
+      } else {
+        modalProvider.removeAllListeners();
+      }
     };
   }, [modalProvider, web3Modal, connectDefaultProvider, connect]);
 };
