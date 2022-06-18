@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react'
 import { Contract } from 'ethers'
-import { useWeb3 } from '../../web3'
-import { useAddresses } from '../../web3/chains'
 import SarcoTokenABI from '../artifacts/SarcoToken.json'
 import SarcoStakingABI from '../artifacts/SarcoStaking.json'
 import SarcoVotingRightsABI from '../artifacts/SarcoVotingRights.json'
+import { useWeb3Provider } from "../web3Data/hooks/useWeb3Provider"
+import { useAddresses } from './useAddresses'
 
 const useSarcophagusTokenContract = () => {
-  const { chainId, signerOrProvider } = useWeb3()
+  const { state: { chainId, signerOrProvider } } = useWeb3Provider()
   const addresses = useAddresses(chainId)
   const [sarcophagusTokenContract, setSarcophagusTokenContract] = useState()
 
@@ -24,9 +24,9 @@ const useSarcophagusTokenContract = () => {
   return sarcophagusTokenContract
 }
 const useSarcophagusVotingRightsContract = () => {
-  const { chainId, signerOrProvider } = useWeb3()
+  const { state: { chainId, signerOrProvider } } = useWeb3Provider()
   const addresses = useAddresses(chainId)
-  const [ sarcophagusVotingRightsContract, setSarcophagusVotingRightsContract ] = useState()
+  const [sarcophagusVotingRightsContract, setSarcophagusVotingRightsContract] = useState()
 
   useEffect(() => {
     if (!chainId || !addresses || !signerOrProvider) return
@@ -41,9 +41,9 @@ const useSarcophagusVotingRightsContract = () => {
   return sarcophagusVotingRightsContract
 }
 const useSarcophagusStakingContract = () => {
-  const { chainId, signerOrProvider } = useWeb3()
+  const { state: { chainId, signerOrProvider } } = useWeb3Provider()
   const addresses = useAddresses(chainId)
-  const [ sarcophagusStakingContract, setSarcophagusStakingContract ] = useState()
+  const [sarcophagusStakingContract, setSarcophagusStakingContract] = useState()
 
   useEffect(() => {
     if (!chainId || !addresses || !signerOrProvider) return
@@ -60,8 +60,8 @@ const useSarcophagusStakingContract = () => {
 
 
 
-export { 
+export {
   useSarcophagusTokenContract,
   useSarcophagusVotingRightsContract,
   useSarcophagusStakingContract
- }
+}

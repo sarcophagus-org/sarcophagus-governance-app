@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
 import { BigNumber } from 'ethers'
-import { useWeb3 } from '../../web3'
+import { useWeb3Provider } from '../web3Data/hooks/useWeb3Provider'
 
 const useSarcoBalance = (sarcophagusTokenContract, currentBlock) => {
-  const { account } = useWeb3()
+  const { state: { account} } = useWeb3Provider()
   const [balance, setBalance] = useState(BigNumber.from(0))
 
   useEffect(() => {
