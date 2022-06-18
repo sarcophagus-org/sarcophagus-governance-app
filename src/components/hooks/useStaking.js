@@ -3,10 +3,10 @@ import { utils } from "ethers"
 import { useEffect, useState } from "react"
 import { useData } from "../../context/blockchain"
 import { useTransaction } from "../../context/blockchain/useTransaction"
-import { useWeb3 } from "../../web3"
+import { useWeb3Provider } from "../../context/web3Data/hooks/useWeb3Provider"
 
 const useStaking = (varient) => {
-  const { account } = useWeb3()
+  const { state: { account } } = useWeb3Provider()
   const { balance, allowance, sarcophagusTokenContract, sarcophagusStakingContract } = useData()
   const [ sarco, setSarco ] = useState(0)
   const [ sarcoBN, setSarcoBN] = useState(BigNumber.from(0))

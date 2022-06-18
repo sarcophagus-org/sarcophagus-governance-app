@@ -2,17 +2,27 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import { Web3Provider } from './web3/index';
 import { DataProvider } from './context/blockchain'
 import reportWebVitals from './reportWebVitals';
 import { ToastContainer } from 'react-toastify';
+import { Web3Provider } from './context/web3Data/Web3Provider';
 
 ReactDOM.render(
   <React.StrictMode>
     <Web3Provider>
       <DataProvider>
+        <ToastContainer
+          closeButton={true}
+          position="bottom-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          rtl={false}
+          closeOnClick 
+          pauseOnFocusLoss
+          draggable
+          />
         <App />
-        <ToastContainer closeButton={false} />
       </DataProvider>
     </Web3Provider>
   </React.StrictMode>,

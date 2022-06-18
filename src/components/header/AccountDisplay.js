@@ -1,12 +1,10 @@
 import React from 'react'
 import { truncate } from '../../utils'
-import { useWeb3 } from '../../web3'
 import icon from '../../assets/images/icon.svg'
-import { connect } from '../../web3/userSupplied'
+import { useWeb3Provider } from '../../context/web3Data/hooks/useWeb3Provider'
 
 const AccountDisplay = () => {
-    const { account } = useWeb3()
-
+    const { state: { account }, connect } = useWeb3Provider()
     if (account) {
         return (
         <div className="flex justify-center items-center w-full">

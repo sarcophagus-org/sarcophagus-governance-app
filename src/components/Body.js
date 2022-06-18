@@ -1,19 +1,19 @@
 import React from 'react'
-import { useWeb3 } from '../web3'
-import { useAddresses } from '../web3/chains'
+import { useAddresses } from '../context/blockchain/useAddresses'
+import { useWeb3Provider } from '../context/web3Data/hooks/useWeb3Provider'
 import BlockchainContainer from './BlockchainContainer'
 import Heading from './layout/Heading'
 import StakingContainer from './StakingContainer'
 
 const Link = ({ type, address }) => {
-  const { chainId } = useWeb3()
+  const { state: {chainId} } = useWeb3Provider()
   const network = parseInt(chainId, 10) === 4 ? "rinkeby." : ""
   const etherscanURL = `https://${network}etherscan.io/address/${address}`
   return <a href={etherscanURL} target="_blank" rel="noreferrer noopener">View {type} Contract on Etherscan</a>
 }
 
 const Body = () => {
-  const { chainId } = useWeb3()
+  const { state: {chainId} } = useWeb3Provider()
   const addresses = useAddresses(chainId)
 
   return (
