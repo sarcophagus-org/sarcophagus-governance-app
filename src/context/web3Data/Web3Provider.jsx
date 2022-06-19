@@ -105,8 +105,10 @@ export function Web3Provider({ children }) {
   const load = useCallback(() => {
     if (web3Modal.cachedProvider) {
       connect();
+      return;
     }
-  }, [connect]);
+    connectDefaultProvider();
+  }, [connect, connectDefaultProvider]);
 
   useEffect(() => load(), [load]);
 
